@@ -32,6 +32,11 @@
         </div>
 
         <button class="saveButton" @onclick="isChecked">Регистрация</button>
+
+        @if (isRegistered)
+        {
+            <h3>Вы зарегестрировались</h3>
+        }
     </div>
 
     @code {
@@ -40,6 +45,7 @@
         private string fullName = "";
         private string password = "";
         private string repeatPassword = "";
+        private bool isRegistered = false;
 
         public void isChecked() 
         {
@@ -50,6 +56,7 @@
                     fillData();
                 }
             }
+            isRegistered = true;
         }
 
         private void fillData() 

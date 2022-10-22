@@ -9,16 +9,12 @@ namespace RegistrationApp.MongoDB
         [BsonIgnoreIfDefault]
         public Object _id;
 
-        [BsonIgnoreIfDefault]
         private string fullName;
 
-        [BsonIgnoreIfDefault]
         private string email;
 
-        [BsonIgnoreIfDefault]
         private string login;
 
-        [BsonIgnoreIfDefault]
         private string password;
 
         [BsonIgnoreIfDefault]

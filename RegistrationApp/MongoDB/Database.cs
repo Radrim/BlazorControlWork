@@ -23,7 +23,7 @@ namespace RegistrationApp.MongoDB
             var collection = database.GetCollection<User>("Users");
             var user = collection.Find(x => x.Login == login).FirstOrDefault();
 
-            if (user != null)
+            if (user == null)
             {
                 return null;
             }

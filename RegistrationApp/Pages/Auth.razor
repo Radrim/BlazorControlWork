@@ -3,9 +3,15 @@
 @using MongoDB;
 
 <h3>Authorization</h3>
-
 <div>
     <link rel="stylesheet" href=~/css/site.css />
+
+    <div class="user">
+        @if (isLogged = true)
+        {
+            <h3>@name</h3>
+        }
+    </div>
 
     <div class="authorization">
         <div class="login">
@@ -16,21 +22,24 @@
             <p>Введите пароль: <input @bind-value="@password" /></p>
         </div>
 
-        <button class="saveButton" @onclick="isUser">Войти</button>
+        <button class="logButton" @onclick="isUser">Войти</button>
     </div>
 
     @code {
         private string login = "";
         private string password = "";
+        private bool isLogged = false;
+        private string name = "";
 
         public void isUser() 
         {
             User user = MongoDB.Database.FindByName(login, password);
-
-            if (user.Login == login && user.Password == password) 
+            if (login == user.Login && password == user.Password) 
             {
-                login = "Nice";
+                isLogged = true;
             }
+            name = user.Name;
+            
         }
     }
 </div>
