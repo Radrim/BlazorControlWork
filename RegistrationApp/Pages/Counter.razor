@@ -1,0 +1,28 @@
+﻿@page "/counter"
+@using MongoDB;
+
+<PageTitle>Log in</PageTitle>
+
+<div>
+    <link rel="stylesheet" href=~/css/site.css />
+
+    <div class="authorization">
+        <div class="login">
+            <p>Введите логин: <input @bind-value="@login" /></p>
+        </div>
+
+        <div class="password">
+            <p>Введите пароль: <input @bind-value="@password" /></p>
+        </div>
+    </div>
+
+    @code {
+        private string login = "";
+        private string password = "";
+        List<User> users = new List<User>();
+        
+
+
+    }
+</div>
+

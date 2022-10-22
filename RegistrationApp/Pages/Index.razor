@@ -1,0 +1,67 @@
+﻿@page "/"
+
+@using MongoDB;
+
+<PageTitle>Sign up</PageTitle>
+
+<h1>Welcome to RegistrationApp!</h1>
+
+<div>
+    <link rel="stylesheet" href=~/css/site.css />
+
+    <div class="authorization">
+
+        <div class="Name">
+            <p>Введите ФИО: <input @bind-value="@fullName" /></p>
+        </div>
+
+        <div class="Email">
+            <p>Введите Email: <input @bind-value="@email" /></p>
+        </div>
+
+        <div class="login">
+            <p>Введите логин: <input @bind-value="@login"/></p>
+        </div>
+
+        <div class="password">
+            <p>Введите пароль: <input @bind-value="@password" /></p>
+        </div>
+
+        <div class="password">
+            <p>Повторно введите пароль: <input @bind-value="@repeatPassword" /></p>
+        </div>
+
+        <button class="saveButton" @onclick="isChecked">Регистрация</button>
+    </div>
+
+    @code {
+        private string login = "";
+        private string email = "";
+        private string fullName = "";
+        private string password = "";
+        private string repeatPassword = "";
+
+        public void isChecked() 
+        {
+            if (login != "" && password != "" && repeatPassword != "")
+            {
+                if (repeatPassword == password) 
+                {
+                    fillData();
+                }
+            }
+        }
+
+        private void fillData() 
+        {
+            User user = new User();
+            user.Name = fullName;
+            user.Email = email;
+            user.Login = login;
+            user.Password = password;
+            MongoDB.Database.AddToDatabase(user);
+        }
+    }
+</div>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
